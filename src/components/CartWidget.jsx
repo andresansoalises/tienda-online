@@ -1,15 +1,11 @@
-import cart from "../assets/cart.jpg";
+import { BsCart2 } from "react-icons/bs";
+import Badge from "react-bootstrap/Badge";
 
 function CartWidget() {
   return (
     <div>
-      <img
-        src={cart}
-        width="55"
-        height="40"
-        className="d-inline-block align-top"
-        alt="React Bootstrap logo"
-      />
+      <BsCart2 />
+      <Badge bg="secondary">0</Badge>
     </div>
   );
 }

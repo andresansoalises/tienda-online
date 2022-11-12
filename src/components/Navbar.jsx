@@ -2,27 +2,32 @@ import Container from "react-bootstrap/Container";
 import Navbar from "react-bootstrap/Navbar";
 import Nav from "react-bootstrap/Nav";
 import CartWidget from "./CartWidget";
+import { NavDropdown } from "react-bootstrap";
 
 function NavBar() {
   return (
-    <Navbar className="justify-content-end" bg="light" expand="lg">
+    <Navbar collapseOnSelect bg="light" expand="lg">
       <Container>
         <Nav.Item>
           <Nav.Link href="/home">Home</Nav.Link>
         </Nav.Item>
+        <NavDropdown title="Productos" id="basic-nav-dropdown">
+          <NavDropdown.Item href="#action/3.1">
+            Aspironebulizadores
+          </NavDropdown.Item>
+          <NavDropdown.Item href="#action/3.2">Oxímetros</NavDropdown.Item>
+          <NavDropdown.Item href="#action/3.3">Tensiómetros</NavDropdown.Item>
+        </NavDropdown>
         <Nav.Item>
-          <Nav.Link eventKey="link-1">Dermocosmética</Nav.Link>
+          <Nav.Link eventKey="link-2">Servicio Técnico</Nav.Link>
         </Nav.Item>
         <Nav.Item>
-          <Nav.Link eventKey="link-2">Cuidado Capilar</Nav.Link>
-        </Nav.Item>
-        <Nav.Item>
-          <Nav.Link eventKey="link-3">Maquillaje</Nav.Link>
+          <Nav.Link eventKey="link-3">Contacto</Nav.Link>
         </Nav.Item>
         <Nav.Item>
           <CartWidget />
         </Nav.Item>
-    </Container>
+      </Container>
     </Navbar>
   );
 }
