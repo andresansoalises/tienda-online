@@ -1,7 +1,9 @@
-const ItemDetail = () => {
-  return (
-    <div>ItemDetail</div>
-  )
-}
+import { useParams } from "react-router-dom";
 
-export default ItemDetail
+const ItemDetail = () => {
+  const { productId } = useParams();
+  console.log(productId);
+  return <div>ItemDetail</div>;
+};
+
+export default ItemDetail;
