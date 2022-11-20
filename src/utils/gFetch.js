@@ -49,6 +49,10 @@ let obj = [
   },
 ];
 
-export const gFetch = new Promise((resuelto, rechazada) => {
-  resuelto(obj);
-});
+export const gFetch = (id) => {
+  return new Promise((resolve, reject) => {
+    setTimeout(() => {
+      resolve(id ? obj.find((item) => item.id === id) : obj);
+    }, 2000);
+  });
+};
