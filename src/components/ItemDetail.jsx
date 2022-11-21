@@ -1,19 +1,22 @@
 import { Button, Card } from "react-bootstrap";
 import { Link } from "react-router-dom";
+import Contador from "./Contador";
 
-const ItemDetail = ({product}) => {  
-  return <div>
+const ItemDetail = ({ product }) => {
+  const onAdd=(cantidad)=>{console.log(cantidad)}
+  return (
+    <div>
     <Card style={{ width: "18rem" }}>
-      <Link to={"/detail/${obj.id}"}>
         <Card.Img variant="top" src={product.img} />
         <Card.Body>
           <Card.Title>{product.nombre}</Card.Title>
           <Card.Text>${product.precio}</Card.Text>
           <Button variant="primary">Comprar</Button>
         </Card.Body>
-      </Link>
     </Card>
-  </div>;
+    <Contador stock={10} initial={1} onAdd={onAdd}/>
+    </div>
+  );
 };
 
 export default ItemDetail;

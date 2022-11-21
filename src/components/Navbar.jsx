@@ -13,11 +13,11 @@ function NavBar() {
           <Nav.Link href="/home">Home</Nav.Link>
         </Nav.Item>
         <NavDropdown title="Productos" id="basic-nav-dropdown">
-          <NavDropdown.Item href="productos/aspironebulizadores">
+          <NavDropdown.Item href="/categoria/Aspirador">
             Aspironebulizadores
           </NavDropdown.Item>
-          <NavDropdown.Item href="productos/oximetros">Oxímetros</NavDropdown.Item>
-          <NavDropdown.Item href="productos/tensiometros">Tensiómetros</NavDropdown.Item>
+          <NavDropdown.Item href="/categoria/Oximetro">Oxímetros</NavDropdown.Item>
+          <NavDropdown.Item href="/categoria/Tensiometro">Tensiómetros</NavDropdown.Item>
         </NavDropdown>
         <Nav.Item>
           <Nav.Link eventKey="link-2">Servicio Técnico</Nav.Link>
