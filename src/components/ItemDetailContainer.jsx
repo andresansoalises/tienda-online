@@ -1,6 +1,6 @@
 import { useEffect } from "react";
 import { useState } from "react";
-import { useParams } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 import { gFetch } from "../utils/gFetch";
 import ItemDetail from "./ItemDetail";
 

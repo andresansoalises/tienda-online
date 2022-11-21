@@ -52,7 +52,6 @@ let obj = [
 export const gFetch = (id) => {
   return new Promise((resolve, reject) => {
     setTimeout(() => {
-      resolve(id ? obj.find((item) => item.id === id) : obj);
-    }, 2000);
+      resolve(obj)}, 2000);
   });
 };

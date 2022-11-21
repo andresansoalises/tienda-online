@@ -4,16 +4,24 @@ import { useState } from "react";
 import { gFetch } from "../utils/gFetch";
 import ItemList from "./ItemList";
 
-function ItemListContainer(obj) {
+const ItemListContainer = (obj)=> {
   const [products, setProducts] = useState([]);
+  const [loading, setLoading] = useState(true);
 
+  useEffect(()=>{
+  gFetch("1")
+ .then(resp => setProducts(resp))
+ .catch (err=> console.log(err))
+ .finally(()=>setLoading(false))
+},[])
 
-  gFetch.then((obj) => setProducts(obj));
   return (
-    <div>
-<ItemList products={products}/>
-    </div>
-  );
+
+    loading
+     ?  
+     <h2> Cargando...</h2>:
+<div><ItemList products={products}/></div>
+  )
 }
 
 export default ItemListContainer;
