@@ -8,8 +8,9 @@ const ItemDetailContainer = () => {
   const [product, setProduct] = useState({});
   const { productId } = useParams();
   useEffect(() => {
-    gFetch(productId).then((resp) => setProduct(resp));
-  }, []);
+      gFetch(productId).then((resp) => setProduct(resp));
+    }, []);
+
 
   return (
     <div>

@@ -11,7 +11,6 @@ const ItemDetail = ({ product }) => {
         <Card.Body>
           <Card.Title>{product.nombre}</Card.Title>
           <Card.Text>${product.precio}</Card.Text>
-          <Button variant="primary">Comprar</Button>
         </Card.Body>
     </Card>
     <Contador stock={10} initial={1} onAdd={onAdd}/>

@@ -4,6 +4,7 @@ import { Link, useParams } from "react-router-dom";
 import "./ItemListContainer.css";
 import { gFetch } from "../../utils/gFetch";
 import ItemList from "../ItemList";
+import ItemDetail from "../ItemDetail";
 
 const ItemListContainer = (obj) => {
   const [products, setProducts] = useState([]);
