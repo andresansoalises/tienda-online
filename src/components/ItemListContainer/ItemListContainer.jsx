@@ -6,11 +6,46 @@ import { gFetch } from "../../utils/gFetch";
 import ItemList from "../ItemList";
 import ItemDetail from "../ItemDetail";
 
+import {
+  getFirestore,
+  collection,
+  getDocs,
+  query,
+  where,
+} from "firebase/firestore";
+
 const ItemListContainer = (obj) => {
   const [products, setProducts] = useState([]);
+
+  const [product, setProduct] = useState({});
+
   const [loading, setLoading] = useState(true);
   const { categoriaId } = useParams();
+
   useEffect(() => {
+    const dbFirestore = getFirestore();
+    const queryCollection = collection(dbFirestore, "Items");
+    if (categoriaId) {
+      let queryFilter = query(
+        queryCollection,
+        where("categoria", "==", categoriaId)
+      );
+
+      getDocs(queryFilter)
+        .then((resp) =>
+          setProducts(resp.docs.map((doc) => ({ id: doc.id, ...doc.data() })))
+        )
+        .catch((err) => console.log(err))
+        .finally(() => setLoading(false))
+    } else {
+      gFetch()
+        .then((resp) => setProducts(resp))
+        .catch((err) => console.log(err))
+        .finally(() => setLoading(false))
+    }
+  }, [categoriaId]);
+
+  /*useEffect(() => {
     if (categoriaId) {
       gFetch()
         .then((resp) =>
@@ -24,7 +59,7 @@ const ItemListContainer = (obj) => {
         .catch((err) => console.log(err))
         .finally(() => setLoading(false));
     }
-  }, [categoriaId]);
+  }, [categoriaId]);*/
 
   return loading ? (
     <h2> Cargando...</h2>

@@ -6,6 +6,7 @@ function CartWidget() {
     <div>
       <BsCart2 />
       <Badge bg="secondary">0</Badge>
+      
     </div>
   );
 }
