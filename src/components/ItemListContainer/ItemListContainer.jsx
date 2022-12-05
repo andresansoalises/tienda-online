@@ -12,6 +12,7 @@ import {
   getDocs,
   query,
   where,
+  getDoc,
 } from "firebase/firestore";
 
 const ItemListContainer = (obj) => {
@@ -26,6 +27,7 @@ const ItemListContainer = (obj) => {
     const dbFirestore = getFirestore();
     const queryCollection = collection(dbFirestore, "Items");
     if (categoriaId) {
+      const queryCollection = collection(dbFirestore, "Items");
       let queryFilter = query(
         queryCollection,
         where("categoria", "==", categoriaId)
@@ -37,11 +39,13 @@ const ItemListContainer = (obj) => {
         )
         .catch((err) => console.log(err))
         .finally(() => setLoading(false))
+        .then((doc) => setProduct({ id: doc.id, ...doc.data() }));
     } else {
-      gFetch()
-        .then((resp) => setProducts(resp))
+      getDocs(queryCollection)
+        .then((resp) => setProducts(resp.docs.map(doc => ({ id: doc.id, ...doc.data() }))))
         .catch((err) => console.log(err))
         .finally(() => setLoading(false))
+        .then((doc) => setProduct({ id: doc.id, ...doc.data() }));
     }
   }, [categoriaId]);
 
