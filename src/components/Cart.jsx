@@ -23,7 +23,7 @@ const Cart = () => {
     let orden = {};
     orden.buyer = dataForm;
     orden.total = precioTotal();
-    orden.Items = cartList.map(product => {
+    orden.items = cartList.map(product => {
       return{
       id: product.id,
       nombre: product.nombre,

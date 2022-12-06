@@ -1,8 +1,7 @@
 import { useEffect } from "react";
 import { useState } from "react";
-import { Link, useParams } from "react-router-dom";
+import { useParams } from "react-router-dom";
 import "./ItemListContainer.css";
-import { gFetch } from "../../utils/gFetch";
 import ItemList from "../ItemList";
 import ItemDetail from "../ItemDetail";
 
@@ -12,7 +11,6 @@ import {
   getDocs,
   query,
   where,
-  getDoc,
 } from "firebase/firestore";
 
 const ItemListContainer = (obj) => {
@@ -26,44 +24,18 @@ const ItemListContainer = (obj) => {
   useEffect(() => {
     const dbFirestore = getFirestore();
     const queryCollection = collection(dbFirestore, "Items");
-    if (categoriaId) {
-      const queryCollection = collection(dbFirestore, "Items");
-      let queryFilter = query(
-        queryCollection,
-        where("categoria", "==", categoriaId)
-      );
+
+      let queryFilter = categoriaId? query(queryCollection,where("categoria", "==", categoriaId))
+      :
+      queryCollection
 
       getDocs(queryFilter)
-        .then((resp) =>
-          setProducts(resp.docs.map((doc) => ({ id: doc.id, ...doc.data() })))
-        )
+        .then((resp) => setProducts(resp.docs.map((doc) => ({ id: doc.id, ...doc.data() }))))
         .catch((err) => console.log(err))
         .finally(() => setLoading(false))
-        .then((doc) => setProduct({ id: doc.id, ...doc.data() }));
-    } else {
-      getDocs(queryCollection)
-        .then((resp) => setProducts(resp.docs.map(doc => ({ id: doc.id, ...doc.data() }))))
-        .catch((err) => console.log(err))
-        .finally(() => setLoading(false))
-        .then((doc) => setProduct({ id: doc.id, ...doc.data() }));
-    }
-  }, [categoriaId]);
+        /*.then((doc) => setProducts({ id: doc.id, ...doc.data() }));*/
 
-  /*useEffect(() => {
-    if (categoriaId) {
-      gFetch()
-        .then((resp) =>
-          setProducts(resp.filter((prod) => prod.categoria === categoriaId))
-        )
-        .catch((err) => console.log(err))
-        .finally(() => setLoading(false));
-    } else {
-      gFetch()
-        .then((resp) => setProducts(resp))
-        .catch((err) => console.log(err))
-        .finally(() => setLoading(false));
-    }
-  }, [categoriaId]);*/
+  }, [categoriaId]);
 
   return loading ? (
     <h2> Cargando...</h2>
