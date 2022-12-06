@@ -10,12 +10,12 @@ import {
 import { useState } from "react";
 
 const Cart = () => {
-  const [dataForm, setDataForm] = useState({
+   const [dataForm, setDataForm] = useState({
     nombre: "",
-    telefono: "",
+    teléfono: "",
     email: "",
-  });
-  const { cartList, borrarCarrito, precioTotal, eliminarProducto } =
+    });
+    const { cartList, borrarCarrito, precioTotal, eliminarProducto } =
     useCartContext();
 
   const generarOrden = (evt) => {
@@ -23,13 +23,14 @@ const Cart = () => {
     let orden = {};
     orden.buyer = dataForm;
     orden.total = precioTotal();
-    orden.items = cartList.map((product) => ({
+    orden.Items = cartList.map(product => {
+      return{
       id: product.id,
       nombre: product.nombre,
       precio: product.precio,
-    }));
-    console.log(orden);
-
+    }});
+    /*console.log(orden);*/
+  
     const db = getFirestore();
     const queryCollection = collection(db, "orders");
     addDoc(queryCollection, orden)
@@ -37,18 +38,18 @@ const Cart = () => {
       .finally(() => {
         setDataForm({
           nombre: "",
-          telefono: "",
+          teléfono: "",
           email: "",
         });
         borrarCarrito();
       });
   };
-  const handOnChange = (evt) => {
-    console.log("nombre input:", evt.target.nombre);
+  const handleOnChange = (evt) => {
+    console.log("nombre input:", evt.target.name);
     console.log("valor del input:", evt.target.value);
     setDataForm({
       ...dataForm,
-      [evt.target.nombre]: evt.target.value,
+      [evt.target.name]: evt.target.value,
     });
   };
   
@@ -74,32 +75,33 @@ const Cart = () => {
             <input
               type="text"
               name="nombre"
-              onChange={handOnChange}
+              onChange={handleOnChange}
               value={dataForm.nombre}
               placeholder="Ingrese nombre"
             />
             <input
               type="text"
               name="email"
-              onChange={handOnChange}
+              onChange={handleOnChange}
               placeholder="Ingrese email"
             />
             <input
               type="text"
               name="Repetir email"
-              onChange={handOnChange}
+              onChange={handleOnChange}
+              value={dataForm.email}
               placeholder="Repetir email"
             />
 
             <input
               type="text"
               name="teléfono"
-              onChange={handOnChange}
-              value={dataForm.telefono}
+              value={dataForm.teléfono}
+              onChange={handleOnChange}
               placeholder="Ingrese teléfono"
             />
 
-            <button onClick={generarOrden()}>Generar Orden</button>
+            <button>Generar Orden</button>
           </form>
         </>
       ) : (
