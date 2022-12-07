@@ -69,7 +69,7 @@ const Cart = () => {
               </li>
             ))}
           </ul>
-          <h2>{precioTotal() !== 0 && precioTotal()}</h2>
+          <h2>${precioTotal() !== 0 && precioTotal()}</h2>
           <button onClick={borrarCarrito}>Vaciar carrito</button>
           <form onSubmit={generarOrden}>
             <input

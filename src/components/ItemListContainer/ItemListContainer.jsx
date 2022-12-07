@@ -3,7 +3,7 @@ import { useState } from "react";
 import { useParams } from "react-router-dom";
 import "./ItemListContainer.css";
 import ItemList from "../ItemList";
-import ItemDetail from "../ItemDetail";
+
 
 import {
   getFirestore,
@@ -25,23 +25,29 @@ const ItemListContainer = (obj) => {
     const dbFirestore = getFirestore();
     const queryCollection = collection(dbFirestore, "Items");
 
-      let queryFilter = categoriaId? query(queryCollection,where("categoria", "==", categoriaId))
-      :
-      queryCollection
+    let queryFilter = categoriaId
+      ? query(queryCollection, where("categoria", "==", categoriaId))
+      : queryCollection;
 
-      getDocs(queryFilter)
-        .then((resp) => setProducts(resp.docs.map((doc) => ({ id: doc.id, ...doc.data() }))))
-        .catch((err) => console.log(err))
-        .finally(() => setLoading(false))
-        /*.then((doc) => setProducts({ id: doc.id, ...doc.data() }));*/
-
+    getDocs(queryFilter)
+      .then((resp) =>
+        setProducts(resp.docs.map((doc) => ({ id: doc.id, ...doc.data() })))
+      )
+      .catch((err) => console.log(err))
+      .finally(() => setLoading(false));
+    /*.then((doc) => setProducts({ id: doc.id, ...doc.data() }));*/
   }, [categoriaId]);
 
   return loading ? (
     <h2> Cargando...</h2>
   ) : (
-    <div className="grid">
-      <ItemList products={products} />
+    <div className="flex0">
+      <div className="flex1">
+        <h2 className="titulo">PRODUCTOS DESTACADOS</h2>
+      </div>
+      <div className="flex2">
+        <ItemList products={products} />
+      </div>
     </div>
   );
 };

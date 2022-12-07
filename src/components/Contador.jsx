@@ -23,7 +23,9 @@ const Contador = ({ initial = 1, stock = 100, onAdd }) => {
       <button onClick={sumar}>+</button>
       <label>{cantidad}</label>
       <button onClick={restar}>-</button>
+      <div className="agregar">
       <button onClick={addCantidad}>Agregar al carrito</button>
+      </div>
     </div>
   );
 };

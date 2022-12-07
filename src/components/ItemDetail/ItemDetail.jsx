@@ -1,8 +1,9 @@
 import { useState } from "react";
 import { Card } from "react-bootstrap";
 import { Link } from "react-router-dom";
-import { useCartContext } from "../context/CartContext";
-import Contador from "./Contador";
+import { useCartContext } from "../../context/CartContext";
+import Contador from "../Contador";
+import "./ItemDetail.css";
 
 const ItemDetail = ({ product }) => {
   const [isCounter, setIsCounter] = useState(true);
@@ -14,6 +15,8 @@ const ItemDetail = ({ product }) => {
   console.log(cartList);
   return (
     <div>
+      <div className="box0">
+      <h2>Detalle</h2>
       <Card style={{ width: "18rem" }}>
         <Card.Img variant="top" src={product.img} />
         <Card.Body>
@@ -33,6 +36,7 @@ const ItemDetail = ({ product }) => {
           </Link>
         </div>
       )}
+      </div>
     </div>
   );
 };

@@ -11,6 +11,13 @@ function NavBar() {
   return (
     <Navbar collapseOnSelect bg="light" expand="lg">
       <Container>
+      <img
+              alt=""
+              src="src\components\Navbar\Logotipo.png"
+              width="120"
+              height="30"
+              className="d-inline-block align-top"
+            />
         <Nav.Item>
           <Link to={"/home"}>Home</Link>
         </Nav.Item>
@@ -28,10 +35,7 @@ function NavBar() {
           <Nav.Link eventKey="link-3">Contacto</Nav.Link>
         </Nav.Item>
         <Nav.Item>
-          <Link to={"/carrito"}>Carrito</Link>
-        </Nav.Item>
-        <Nav.Item>
-          <CartWidget/>
+          <Link to={"/carrito"}><CartWidget/></Link>
         </Nav.Item>
       </Container>
     </Navbar>

@@ -1,8 +1,7 @@
 import { useEffect } from "react";
 import { useState } from "react";
 import { useParams } from "react-router-dom";
-import { gFetch } from "../utils/gFetch";
-import ItemDetail from "./ItemDetail";
+import ItemDetail from "./ItemDetail/ItemDetail";
 import { getFirestore, doc, getDoc } from "firebase/firestore";
 
 const ItemDetailContainer = () => {
@@ -21,7 +20,9 @@ const ItemDetailContainer = () => {
 
   return (
     <div>
+      <div className="detalle">
       {loading ? <h2>Cargando...</h2> : <ItemDetail product={product} />}
+      </div>
     </div>
   );
 };
